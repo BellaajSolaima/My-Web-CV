@@ -12,4 +12,4 @@ This project is a personal web-based CV built using **HTML**, **CSS**, and **Jav
 
 ## 🎥 Demonstration Video:
 
-![Example Image](video.mkv)
+![Example Image](video.gif)
