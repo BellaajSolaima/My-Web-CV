@@ -8,11 +8,11 @@ on:
 permissions:
   contents: read
   pages: write
-  id-token: write  # Autoriser GitHub Pages à écrire
+  id-token: write  # Autorise l'accès à GitHub Pages
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # Exécute le workflow sur une machine Linux
+    runs-on: ubuntu-latest  # Utilise une machine Linux
 
     steps:
       - name: Checkout du code
@@ -22,10 +22,10 @@ jobs:
         uses: actions/configure-pages@v3  # Configure GitHub Pages
 
       - name: Upload des fichiers
-        uses: actions/upload-pages-artifact@v2  # ✅ Version supportée
+        uses: actions/upload-artifact@v4  # ✅ Nouvelle action recommandée
         with:
-          path: .  # Tous les fichiers du projet HTML/CSS/JS seront pris
+          name: github-pages  # Nom de l’artefact
+          path: .  # Tous les fichiers HTML/CSS/JS du projet seront pris
 
       - name: Déployer sur GitHub Pages
-        uses: actions/deploy-pages@v1  # Déploie sur GitHub Pages
-
+        uses: actions/deploy-pages@v1  # Déploie les fichiers sur GitHub Pages
