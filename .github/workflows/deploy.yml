@@ -3,7 +3,7 @@ name: Deploy Static Website to GitHub Pages
 on:
   push:
     branches:
-      - main  # Exécuter l’action lors d’un push sur la branche `main`
+      - main  # Exécuter l’action lors d’un push sur `main`
 
 permissions:
   contents: read
@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # Exécute le workflow sur une machine Linux
+    runs-on: ubuntu-latest  # Exécuter sur une machine Linux
 
     steps:
       - name: Checkout du code
@@ -21,11 +21,13 @@ jobs:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v3  # Configure GitHub Pages
 
-      - name: Upload des fichiers (correctif)
-        uses: actions/upload-pages-artifact@v2  # ✅ Correctif : Compatible GitHub Pages
+      - name: Upload des fichiers (Correctif)
+        uses: actions/upload-pages-artifact@v2  # ✅ Version correcte pour GitHub Pages
         with:
-          path: .  # Tous les fichiers HTML/CSS/JS du projet seront pris en compte
+          path: .  # Tous les fichiers HTML/CSS/JS du projet
+          name: github-pages  # ✅ Définition correcte du nom d'artefact
 
       - name: Déployer sur GitHub Pages
-        uses: actions/deploy-pages@v1  # Déploie les fichiers sur GitHub Pages
-
+        uses: actions/deploy-pages@v1
+        with:
+          artifact_name: github-pages  # ✅ S'assurer que le bon artefact est déployé
